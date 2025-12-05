@@ -21,14 +21,30 @@ pipeline {
             }
         }
 
+         
+
+        // stage("Login to ECR") {
+        //     steps {
+        //         sh '''
+        //         aws ecr get-login-password --region us-east-1 \
+        //         | docker login --username AWS --password-stdin 189326461630.dkr.ecr.us-east-1.amazonaws.com
+        //         '''
+        //     }
+        // }
         stage("Login to ECR") {
             steps {
-                sh '''
-                aws ecr get-login-password --region us-east-1 \
-                | docker login --username AWS --password-stdin 189326461630.dkr.ecr.us-east-1.amazonaws.com
-                '''
+                withCredentials([aws(credentialsId: '189326461630',
+                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+
+                    sh '''
+                        aws ecr get-login-password --region us-east-1 \
+                        | docker login --username AWS --password-stdin 189326461630.dkr.ecr.us-east-1.amazonaws.com
+                    '''
+                }
             }
         }
+
 
         stage("Push image to ECR") {
             steps {

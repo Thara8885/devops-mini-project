@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-mini-svc
+  name: hello-service
 spec:
   type: LoadBalancer
   selector:
-    app: hello-mini
+    app: hello-devops
   ports:
-    - port: 80
-      targetPort: 80
+  - port: 80
+    targetPort: 5000

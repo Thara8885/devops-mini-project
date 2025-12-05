@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: hello-mini
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-mini 
+  template:
+    metadata:
+      labels:
+        app: hello-mini 
+    containers:
+      - name: hello-mini 
+        image: nihitha91/hello-mini:latest
+        

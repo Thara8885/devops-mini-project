@@ -9,11 +9,11 @@ pipeline {
 
     stages {
 
-        stage("Get code from github") {
-            steps {
-                git 'https://github.com/Thara8885/devops-mini-project.git'
-            }
-        }
+        // stage("Get code from github") {
+        //     steps {
+        //         git 'https://github.com/Thara8885/devops-mini-project.git'
+        //     }
+        // }
 
         stage("Build docker image") {
             steps {
